@@ -1,7 +1,7 @@
 {
-  'use strict'
+  'use strict';
 
-  this.data = dataSource
+  this.data = dataSource;
 
   const select = {
     containerOf: {
@@ -23,11 +23,6 @@
     bookTemplate: Handlebars.compile(document.querySelector(select.templateOf.book).innerHTML),
   };
 
-  const classList = {
-    favoriteBook: '.favorite',
-    hiddenBook: '.hidden',
-  }
-
   let favoritesBooks = [];
   let filters = [];
 
@@ -40,12 +35,12 @@
       thisBookList.renderRatings();
       thisBookList.renderBooksList();
       thisBookList.initAction();
-    };
+    }
 
     getElements () {
-      const thisBookList = this
+      const thisBookList = this;
 
-      thisBookList.dom = {}
+      thisBookList.dom = {};
       thisBookList.dom.filtersContainer = document.querySelector(select.containerOf.form);
       thisBookList.dom.bookList = document.querySelector(select.books.list);
     }
@@ -57,17 +52,17 @@
         book.ratingWidth = ratingWidth;
         let ratingColor = '';
         if (bookRating < 6) {
-         ratingColor = 'linear-gradient(to bottom,  #fefcea 0%, #f1da36 100%)';
+          ratingColor = 'linear-gradient(to bottom,  #fefcea 0%, #f1da36 100%)';
         } else if (bookRating > 6 && bookRating <= 8) {
-        ratingColor = 'linear-gradient(to bottom, #b4df5b 0%,#b4df5b 100%)';
+          ratingColor = 'linear-gradient(to bottom, #b4df5b 0%,#b4df5b 100%)';
         } else if (bookRating > 8 && bookRating <= 9) {
-        ratingColor = 'linear-gradient(to bottom, #299a0b 0%, #299a0b 100%)';
+          ratingColor = 'linear-gradient(to bottom, #299a0b 0%, #299a0b 100%)';
         } else if (bookRating > 9) {
-        ratingColor = 'linear-gradient(to bottom, #ff0084 0%,#ff0084 100%)';
+          ratingColor = 'linear-gradient(to bottom, #ff0084 0%,#ff0084 100%)';
         }
-        book.ratingColor = ratingColor;
+        book.ratingBgc = ratingColor;
       }
-    };
+    }
 
     renderBooksList() {
       for (let book of dataSource.books) {
@@ -76,7 +71,7 @@
         const bookList = document.querySelector(select.books.list);
         bookList.appendChild(domElement);
       }
-    };
+    }
 
     addToFavorites(clickedBook) {
       event.preventDefault();
@@ -89,7 +84,7 @@
         clickedBook.classList.remove('favorite');
         favoritesBooks.splice(bookIndex, 1);
       }
-    };
+    }
 
     filterBooks(input) {
       if (input.checked) {
@@ -98,7 +93,7 @@
         const filterIndex = filters.indexOf(input.value);
         filters.splice(filterIndex, 1);
       }
-    };
+    }
 
     hideBooks(){
       for (const book of dataSource.books){
@@ -117,7 +112,7 @@
           bookImage.classList.remove('hidden');
         }
       }
-    };
+    }
 
     initAction() {
       const thisBookList = this;
@@ -136,10 +131,10 @@
           thisBookList.hideBooks(filterInput);
         }
       });
-    };
+    }
   }
   
-  const app = new BookList();
+  this.app = new BookList();
 }
 
 
